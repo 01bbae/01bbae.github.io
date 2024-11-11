@@ -79,19 +79,28 @@ We mentioned before that another metric used is FLOPs or floating point operatio
 
 There are a couple of different techniques to make smaller and more efficient ML models.
 
-- quantization
 - pruning
+- quantization
 - knowledge distillation
 - neural architecture search
 - model/hardware specific optimizations
 
 We will be looking only at the first 3 in this article, so that this explainer is more model agnostic.
 
+### Pruning
+
+
+
+Pruning reduces the model size by on average around 10x but this effect can be compounded when also applying quantization.
+
 ### Quantization
 
-Quantization is the process of making models go from the continous domain into the discrete domain to save model size and faster inference. Floating point operations are much more expensive compared to integer operations at the hardware level and storing very precise numbers might make accuracy high but also takes up much more memory. If you compare float64 numbers to int8, which is a common quantized size, you can see that there is a 4x reduction in bytes.
+Quantization is the process of making models go from the continous domain into the discrete domain to save model size and faster inference. 
+We know that numbers in computers are stored in 1s and 0s, or bits. The way we can speed up model inference and shrink model sizes are to represent numbers in a model with the least amount of bits as possible. Not only are smaller bit numbers faster to compute and take less energy, they take up less memory meaning that the cache of processors can be utilized more effectively without having to load from RAM which can be very slow.
 
-### Pruning
+There are two parts two representing a number in bits, a fractional part and an exponent part. The fractional part, also known as a mantissa, gives the number representation high precision while the exponent part, gives the number high dynamic range. A similar example is when representing scientific numbers in the form $a*10^b$; a is a number between 0 and 10, representing the fractional (or linear) part, while b represents a exponent part which gives the number the ability to reach super high or low ranges. Different numerical representations trade off how many numbers is allocated to precision and how many are stored for high dynamic range.
+
+With Quantization, you can reduce the model size by around 30x, without sacrificing any accuracy (and often achieving higher accuracy).
 
 ### Knowledge Distillation
 
@@ -106,6 +115,7 @@ There are a couple different ways to apply this technique:
 3. Minimize difference of logits
 4. Minimize difference of weights
 5. Minimize difference of sparsity
+6. [Utilize TAs in support of Knowledge Distillation](https://youtu.be/ueUAtFLtukM?si=bNN2T6UaR7VowQS_)
 
 I can't go into the technical details of all of these techniques, but I will quickly discuss #2.
 
@@ -117,7 +127,7 @@ One of the ways to minimize the difference between the models is to minimize the
 
 ## Real World Examples
 
-
+  
 
 ## Problems with Practical On-device ML
 
