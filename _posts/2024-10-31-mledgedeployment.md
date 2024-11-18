@@ -142,6 +142,8 @@ There are a couple different ways to apply this technique:
 
 I can't go into the technical details of all of these techniques, but I will quickly discuss #2.
 
+![output loss]({{ page.media_subpath }}/distillation_loss.png){: width="500"}
+
 One of the ways to minimize the difference between the models is to minimize the difference of output probabilities. This way we can not only describe to the student model what is the right or wrong answer but also the relationship of the classes in regards to the output. For example, if there were 10 classes of animals and the model was fed a picture of a lion, the lion's probabilities would be more similar to the probability of a deer compared to the probability of a fish. We would like the student to capture not only the correct classification of animals, but also the relationships between classes as a way to speed up learning.
 
 Fun Fact: This Knowledge Distillation/Knowledge Transfer Framework was developed in the early days at Microsoft for their [Xbox Kinect platform for doing human pose estimation](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/BodyPartRecognition.pdf).
