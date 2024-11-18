@@ -16,7 +16,7 @@ timezone: America/Los_Angeles
 
 title: bbae # the main title
 
-tagline: for random topics that interest me # it will display as the subtitle
+tagline: for Techincal Writeups on (hopefully) interesting topics # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
